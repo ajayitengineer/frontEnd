@@ -1,0 +1,105 @@
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center mb-5">Student Form</h2>
+            <div class="alert alert-success" *ngIf="isSuccess">
+              <strong>Student Information added successfully !!!.</strong>
+            </div>
+            <div class="alert alert-danger" *ngIf="isError">
+              <strong>Internal Server Error !!!.</strong>
+            </div>
+            <div class="alert alert-danger" *ngIf="isErrorValid">
+              <strong>Please fill all fields !!!.</strong>
+            </div>
+            <div class="card card-outline-secondary">
+                <div class="card-body">
+                    <form class="form" role="form" autocomplete="off" (ngSubmit)="formSubmit()"  #f="ngForm">
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" name="first_name" #first_name="ngModel" (ngModel)="first_name">
+                                <div class="error-field" *ngIf="first_name.invalid && first_name.touched">Please fill out this field.</div>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" name="last_name" (ngModel)="last_name" #last_name="ngModel" required>
+                                <div class="error-field" *ngIf="last_name.invalid && last_name.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="email" value="" name="email" (ngModel)="email" #email="ngModel" required email>
+                                <div class="error-field" *ngIf="email.invalid && email.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Pocket Money</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="number" value="" name="pocket_money" (ngModel)="pocket_money" #pocket_money="ngModel" required>
+                                <div class="error-field" *ngIf="pocket_money.invalid && pocket_money.touched">Please fill out this field.</div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" name="password" #password="ngModel" (ngModel)="password" required>
+                                <div class="error-field" *ngIf="password.invalid && password.touched">Please fill out this field.</div>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Age</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="number" value="" name="age" #age="ngModel" (ngModel)="age" required>
+                                <div class="error-field" *ngIf="age.invalid && age.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">City</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" name="city" (ngModel)="city" #city="ngModel" required>
+                                <div class="error-field" *ngIf="city.invalid && city.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">State</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" name="state" #state="ngModel" (ngModel)="state" required>
+                                <div class="error-field" *ngIf="state.invalid && state.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Zip</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="number" value="" name="zip" (ngModel)="zip" #zip="ngModel" required>
+                                <div class="error-field" *ngIf="zip.invalid && zip.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label">Country</label>
+                            <div class="col-lg-9">
+                                <input class="form-control" type="text" value="" name="country" #country="ngModel" (ngModel)="country" required>
+                                <div class="error-field" *ngIf="country.invalid && country.touched">Please fill out this field.</div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-3 col-form-label form-control-label"></label>
+                            <div class="col-lg-9">
+                                <input type="reset" class="btn btn-secondary" value="Cancel" (click)="formReset()">&nbsp;
+                                <input type="submit" class="btn btn-primary" value="Save" [disabled]="f.invalid && f.touched" >
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <!--/col-->
+    </div>
+
+</div>

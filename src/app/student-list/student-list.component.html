@@ -1,0 +1,76 @@
+<div class="container">
+    <div class="row check" *ngIf="studentList.length">
+        <div class="col-md-8" *ngIf="check">
+            <div class="data">
+              <div class="first">
+                  <strong>{{secondStudent.first_name}} {{secondStudent.last_name}}</strong>
+              </div>
+              <div class="second">
+                  <strong>{{secondStudent.pocket_money}}</strong>
+              </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" (click)="checkStu()">Check 2nd Highest Pocket Money</button>
+        </div>
+    </div>
+    <div class="row" *ngIf="loader">
+      <div class="loader"></div>
+    </div>
+    <h2 class="text-center mb-5">Students List</h2>
+    <div class="alert alert-info" *ngIf="!studentList.length">
+      <strong>No records for students in data base.</strong>
+      &nbsp;&nbsp;<button class="btn btn-primary"><a class="addStudent" routerLink="/student-form">Add Student</a></button>
+    </div>
+    <div class="alert alert-info" *ngIf="!isPrime && click">
+      <strong>You can't select this student as it's id is not prime.</strong>
+    </div>
+    <table class="table table-bordered" *ngIf="singleStudent">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Age</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Country</th>
+          <th>Zip Code</th>
+          <th>Pocket Money</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of selectStudentData">
+          <td>{{student.id}}</td>
+          <td>{{student.first_name}}</td>
+          <td>{{student.last_name}}</td>
+          <td>{{student.age}}</td>
+          <td>{{student.email}}</td>
+          <td>{{student.city}}</td>
+          <td>{{student.state}}</td>
+          <td>{{student.country}}</td>
+          <td>{{student.zip_code}}</td>
+          <td>{{student.pocket_money}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-bordered" *ngIf="studentList.length">
+      <thead>
+        <tr>
+          <th><input type="checkbox"  value="" (change)="checkPrimeAll()"></th>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Pocket Money</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of studentList">
+          <td><input type="checkbox"  value="" (change)="checkPrime(student.id,this)" [checked]="student.isSelect"></td>
+          <td>{{student.id}}</td>
+          <td>{{student.first_name}}</td>
+          <td>{{student.pocket_money}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
