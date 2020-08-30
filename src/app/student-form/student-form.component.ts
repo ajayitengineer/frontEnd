@@ -22,7 +22,7 @@ export class StudentFormComponent implements OnInit {
     age:number,
     city: string,
     state: string,
-    zip: number,
+    zip_code: number,
     country: string
   }
 
@@ -32,7 +32,6 @@ export class StudentFormComponent implements OnInit {
   }
 
   formSubmit(){
-    console.log(this.studentFrom.value.first_name);
     this.formValues = this.studentFrom.value;
     this.service.storeStudent(this.formValues).subscribe(
       (data) => {

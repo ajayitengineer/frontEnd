@@ -11,7 +11,7 @@ export interface List {
   country: string
 }
 export interface StudentListApi {
- payload: List[],
+ payload: StudentListModify[],
  message: string
 }
 

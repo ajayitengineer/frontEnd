@@ -13,13 +13,15 @@ export class StudentListComponent implements OnInit {
   constructor(private service: StudentService ) { }
 
   check: boolean = false;
-  studentList: List[];
+  studentList: StudentListModify[];
   loader: boolean = true;
   singleStudent: boolean = false;
   selectStudentData: List[] = [];
   isPrime:boolean = false;
   click: boolean = false;
-  secondStudent: List;
+  secondStudent: List[];
+  allCheck: boolean =false;
+  studentListlength: boolean = false;
 
   checkStu(){
     this.check = true;
@@ -41,29 +43,46 @@ export class StudentListComponent implements OnInit {
     }
   }
 
-  checkPrime(id,data){
+  checkPrime(id){
     this.click = true;
     let valid = this.checkIdValidity(id);
     if(valid){
+    let std = this.studentList.find((item) => item.id === id);
+    std.isSelect = true;
     this.isPrime = true;
     this.singleStudent = true;
     let student = this.studentList.find(item => item.id === id);
     this.selectStudentData.push(student);
+  }else {
+    let std = this.studentList.find((item) => item.id === id);
+    std.isSelect = false;
   }
   }
 
   checkPrimeAll(){
-     alert("world");
+    if(this.allCheck){
+    this.studentList.forEach((item,index,array) => {
+       let check = this.checkIdValidity(item.id)
+       if(check){
+           this.studentList[index].isSelect = true;
+       }
+    })
+  }else{
+    this.studentList.forEach((item) => {
+        item.isSelect = false;
+    })
+  }
   }
 
   ngOnInit(): void {
 
     this.service.studentList().subscribe(
       (data: StudentListApi) => {
-        console.log(data);
         this.loader = false;
         this.studentList = data.payload;
-        this.studentList.forEach((item) => item['isSelect'] = false);
+        if(data.payload.length){
+          this.studentListlength = true;
+        }
       },
       (error) => {
         console.log(error);
@@ -73,7 +92,7 @@ export class StudentListComponent implements OnInit {
     this.service.secondLargest().subscribe(
       (data: StudentListApi) => {
         console.log(data);
-        this.secondStudent = data.payload[0];
+        this.secondStudent = data.payload;
 
       },
       (error) => {
